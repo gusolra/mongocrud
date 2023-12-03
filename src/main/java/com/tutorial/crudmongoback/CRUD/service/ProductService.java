@@ -1,13 +1,14 @@
 package com.tutorial.crudmongoback.CRUD.service;
 
-import com.tutorial.crudmongoback.CRUD.dto.ProductDto;
-import com.tutorial.crudmongoback.CRUD.entity.Product;
-import com.tutorial.crudmongoback.CRUD.repository.ProductRepository;
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
+import com.tutorial.crudmongoback.CRUD.dto.ProductDto;
+import com.tutorial.crudmongoback.CRUD.entity.Product;
+import com.tutorial.crudmongoback.CRUD.repository.ProductRepository;
 
 @Service
 public class ProductService {
@@ -25,7 +26,7 @@ public class ProductService {
 
     public Product save(ProductDto dto) {
         int id = autoIncrement();
-        Product product = new Product(id, dto.getName(), dto.getPrice());
+        Product product = new Product(id, dto.getName(), dto.getPrice(), dto.getYear(), dto.getColor());
         return productRepository.save(product);
     }
 
@@ -45,8 +46,7 @@ public class ProductService {
     // private methods
     private int autoIncrement() {
         List<Product> products = productRepository.findAll();
-        return products.isEmpty()? 1 :
-                products.stream().max(Comparator.comparing(Product::getId)).get().getId() + 1;
+        return products.isEmpty() ? 1 : products.stream().max(Comparator.comparing(Product::getId)).get().getId() + 1;
     }
 
 }

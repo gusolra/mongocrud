@@ -10,14 +10,17 @@ public class Product {
     private int id;
     private String name;
     private int price;
+    private int year;
+    private String color;
 
     public Product() {
     }
 
-    public Product(int id, String name, int price) {
+    public Product(int id, String name, int price, int year, String color) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.year = year;
     }
 
     public int getId() {
@@ -42,5 +45,21 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
